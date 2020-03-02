@@ -5,7 +5,6 @@ import Input from "../Input";
 import { EmployeeListItem } from "../EmployeeList"
 import Employees from "../../data/employees.json"
 
-
 class employeeContainer extends Component {
     state = {
         result: Employees,
@@ -17,31 +16,19 @@ class employeeContainer extends Component {
     onSortChange = (event) => {
         const { currentSort } = this.state;
         const type = event.target.innerText;
-        // console.log(event.target.innerText, "20")
         let nextSort;
- 
         if (currentSort === 'down') nextSort = 'up';
         else nextSort = 'down'
-
         this.setState({
             currentSort: nextSort,
             sortType: type
-        })
-    }
-
-    // sortTypeChange = event => {
-    //     console.log(event.target)
-
-    //     this.setState({
-    //         sortType: type
-    //     })
-    // }
+        });
+    };
 
     employeeSearch = () => {
         const trimSearch = this.state.search.trim();
         const searchResults = Employees.filter((emp) => emp.employee_name === trimSearch)
         this.setState({ 'result': searchResults });
-        // console.log(this.state)
     };
 
     componentDidMount() {
@@ -59,14 +46,13 @@ class employeeContainer extends Component {
     handleFormSubmit = event => {
         event.preventDefualt();
         this.searchEmployee();
-    }
+    };
 
     render() {
         return (
             <div>
                 <Navbar />
                 <Container>
-                    {/* {console.log(this.state.currentSort)} */}
                     <Row>
                         <Col size="md-12">
                             <form>
@@ -82,7 +68,6 @@ class employeeContainer extends Component {
                                                 search={this.state.search}
                                             />
                                         </ul>
-
                                     </Row>
                                 </Container>
                             </form>
@@ -101,8 +86,8 @@ class employeeContainer extends Component {
                     </Row>
                 </Container>
             </div>
-        )
-    }
-}
+        );
+    };
+};
 
 export default employeeContainer;
